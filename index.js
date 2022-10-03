@@ -13,7 +13,7 @@ mongoose.connect("mongodb+srv://sooa_mongo_admin:CbfRdzY1dULYKIiE@sooa-mongo-clu
 
 app.use(bodyParser.json());
 
-app.get("/courses",(req,res) => {
+app.get("/grades",(req,res) => {
     Course.find({}, 'students_record').then((course)=>{
         res.json(course)
     }).catch((err) => {
@@ -21,7 +21,7 @@ app.get("/courses",(req,res) => {
     })
 })
 
-app.get("/course",(req,res) => {
+app.get("/grade",(req,res) => {
 
     Course.findOne({'Subject' : req.body.Subject, 'group_number' : req.body.group_number},'students_record').then((course)=>{
         if(course){
@@ -35,7 +35,7 @@ app.get("/course",(req,res) => {
     })
 })
 
-app.get("/course/:id",(req,res) => {
+app.get("/grade/:id",(req,res) => {
 
     Course.findById(req.params.id, 'students_record' ).then((course)=>{
         if(course){
@@ -49,7 +49,7 @@ app.get("/course/:id",(req,res) => {
     })
 })
 
-app.delete("/course/:id",(req,res) => {
+app.delete("/grade/:id",(req,res) => {
 
     Course.findById(req.params.id).then((course)=>{
         if(course){
@@ -79,7 +79,7 @@ app.delete("/course/:id",(req,res) => {
     })
 })
 
-app.delete("/course",(req,res) => {
+app.delete("/grade",(req,res) => {
 
     Course.findOne({'Subject' : req.body.Subject, 'group_number' : req.body.group_number}).then((course)=>{
         if(course){
@@ -108,7 +108,7 @@ app.delete("/course",(req,res) => {
     })
 })
 
-app.put("/course/:id",(req,res) => {
+app.put("/grade/:id",(req,res) => {
     Course.findById(req.params.id).then((course)=>{
         if(course){
             tam = course.students_record.length;
@@ -131,7 +131,7 @@ app.put("/course/:id",(req,res) => {
     
 })
 
-app.put("/course",(req,res) => {
+app.put("/grade",(req,res) => {
     Course.findOne({'Subject' : req.body.Subject, 'group_number' : req.body.group_number}).then((course)=>{
         if(course){
             tam = course.students_record.length;

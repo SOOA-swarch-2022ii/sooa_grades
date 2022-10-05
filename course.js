@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 mongoose.model("courses",{
     subject: {
-        type: Number,
+        type: String,
     },
     schedule: [{
         day: {
